@@ -1,0 +1,572 @@
+<!-- Baby Tooth — Hero Landing Section (Scoped Pure CSS) -->
+<style>
+  #bt-hero-{{ section.id }} {
+    font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif;
+    color: #1A2D3D;
+    background: #F3F8FC;
+    box-sizing: border-box;
+  }
+  #bt-hero-{{ section.id }} *,
+  #bt-hero-{{ section.id }} *::before,
+  #bt-hero-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  /* ── Announcement Bar ── */
+  .bt-announce {
+    background: #4D9BCB;
+    color: #fff;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 10px 16px;
+  }
+
+  /* ── Inner wrapper ── */
+  .bt-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── Hero Block ── */
+  .bt-hero {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .bt-hero__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .bt-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #EDF2F7;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1A2D3D;
+    width: fit-content;
+  }
+  .bt-pill .bt-stars { color: #f59e0b; font-size: 1rem; }
+  .bt-hero__heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    color: #1A2D3D;
+    margin: 0;
+  }
+  .bt-hero__sub {
+    font-size: 1.05rem;
+    color: #4a5568;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .bt-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .bt-btn-primary {
+    display: inline-block;
+    background: #4D9BCB;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 14px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: 2px solid #4D9BCB;
+  }
+  .bt-btn-primary:hover { background: #3F8FBE; border-color: #3F8FBE; transform: translateY(-2px); color: #fff; }
+  .bt-btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: #4D9BCB;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 14px 30px;
+    border-radius: 999px;
+    border: 2px solid #4D9BCB;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .bt-btn-secondary:hover { background: #4D9BCB; color: #fff; }
+  .bt-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #4a5568;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .bt-badges li { display: flex; align-items: center; gap: 4px; }
+
+  /* ── Hero Image ── */
+  .bt-hero__img-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .bt-hero__img {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    object-fit: cover;
+    display: block;
+  }
+  .bt-hero__placeholder {
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 1;
+    background: #EDF2F7;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #4D9BCB;
+    opacity: 0.6;
+    font-size: 0.85rem;
+    font-weight: 600;
+    gap: 12px;
+  }
+  .bt-badge-float {
+    position: absolute;
+    bottom: -16px;
+    left: 0px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    padding: 12px 16px;
+    text-align: center;
+  }
+  .bt-badge-float__num { font-size: 1.6rem; font-weight: 900; color: #4D9BCB; line-height: 1; }
+  .bt-badge-float__label { font-size: 0.7rem; font-weight: 700; color: #718096; line-height: 1.3; }
+
+  /* ── Feature Row ── */
+  .bt-features {
+    background: #fff;
+    border-top: 1px solid #EDF2F7;
+    border-bottom: 1px solid #EDF2F7;
+    padding: 48px 20px;
+  }
+  .bt-features__grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  .bt-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+  }
+  .bt-feature + .bt-feature { border-left: 1px solid #EDF2F7; }
+  .bt-feature__icon {
+    width: 56px;
+    height: 56px;
+    background: #F3F8FC;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+  .bt-feature__title { font-weight: 800; font-size: 0.95rem; color: #1A2D3D; margin: 0; }
+  .bt-feature__desc { font-size: 0.82rem; color: #718096; margin: 0; line-height: 1.5; }
+
+  /* ── Product Strip ── */
+  .bt-products {
+    padding: 64px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .bt-products__title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 900;
+    color: #1A2D3D;
+    margin: 0 0 8px;
+  }
+  .bt-products__sub {
+    text-align: center;
+    color: #718096;
+    font-size: 0.9rem;
+    margin: 0 0 40px;
+  }
+  .bt-products__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .bt-card {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s;
+  }
+  .bt-card:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.13); }
+  .bt-card__img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .bt-card__placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #EDF2F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .bt-card__body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .bt-card__name { font-weight: 800; font-size: 0.95rem; color: #1A2D3D; margin: 0; }
+  .bt-card__price { font-weight: 900; font-size: 1.2rem; color: #4D9BCB; margin: 0; }
+  .bt-card__btn {
+    display: block;
+    background: #4D9BCB;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 12px 20px;
+    border-radius: 999px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: auto;
+    transition: background 0.2s;
+  }
+  .bt-card__btn:hover { background: #3F8FBE; color: #fff; }
+
+  /* ── Bottom CTA ── */
+  .bt-cta-strip {
+    background: #4D9BCB;
+    color: #fff;
+    text-align: center;
+    padding: 72px 20px;
+  }
+  .bt-cta-strip__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin: 0 0 12px;
+  }
+  .bt-cta-strip__title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 900;
+    line-height: 1.25;
+    margin: 0 0 16px;
+  }
+  .bt-cta-strip__body {
+    font-size: 1rem;
+    opacity: 0.9;
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .bt-cta-strip__btn {
+    display: inline-block;
+    background: #fff;
+    color: #4D9BCB;
+    font-weight: 900;
+    font-size: 1rem;
+    padding: 16px 40px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .bt-cta-strip__btn:hover { background: #F3F8FC; color: #4D9BCB; }
+  .bt-cta-strip__fine {
+    margin: 16px 0 0;
+    font-size: 0.8rem;
+    opacity: 0.75;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .bt-hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
+    .bt-hero__img-wrap { order: -1; }
+    .bt-badge-float { display: none; }
+    .bt-features__grid { grid-template-columns: 1fr; }
+    .bt-feature + .bt-feature { border-left: none; border-top: 1px solid #EDF2F7; }
+    .bt-products__grid { grid-template-columns: 1fr; max-width: 360px; }
+    .bt-cta-row { flex-direction: column; }
+    .bt-btn-primary, .bt-btn-secondary { text-align: center; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<div id="bt-hero-{{ section.id }}">
+
+  <!-- Announcement Bar -->
+  <div class="bt-announce">
+    {{ section.settings.announcement_text }}
+  </div>
+
+  <!-- Hero Block -->
+  <div class="bt-hero">
+
+    <!-- Left: Copy -->
+    <div class="bt-hero__copy">
+      <div class="bt-pill">
+        <span class="bt-stars">★★★★★</span>
+        <span>4.97/5 &middot; 5,000+ happy moms &middot; Ages 2&ndash;12</span>
+      </div>
+
+      <h1 class="bt-hero__heading">{{ section.settings.heading }}</h1>
+
+      <p class="bt-hero__sub">{{ section.settings.subheading }}</p>
+
+      <div class="bt-cta-row">
+        <a href="{{ section.settings.button_link }}" class="bt-btn-primary">
+          {{ section.settings.button_label }}
+        </a>
+        <a href="{{ section.settings.secondary_button_link }}" class="bt-btn-secondary">
+          {{ section.settings.secondary_button_label }}
+        </a>
+      </div>
+
+      <ul class="bt-badges">
+        <li>✅ Free Shipping</li>
+        <li>✅ 30-Day Guarantee</li>
+        <li>✅ Dentist Recommended</li>
+      </ul>
+    </div>
+
+    <!-- Right: Image -->
+    <div class="bt-hero__img-wrap">
+      {% if section.settings.hero_image != blank %}
+        {{ section.settings.hero_image | image_url: width: 900 | image_tag:
+          class: 'bt-hero__img',
+          alt: section.settings.heading,
+          loading: 'eager' }}
+      {% else %}
+        <div class="bt-hero__placeholder">
+          <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="#4D9BCB" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span>Add hero image in Customizer</span>
+        </div>
+      {% endif %}
+      <div class="bt-badge-float">
+        <div class="bt-badge-float__num">60s</div>
+        <div class="bt-badge-float__label">All teeth<br>cleaned</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Feature Icons Row -->
+  <div class="bt-features">
+    <div class="bt-features__grid">
+      <div class="bt-feature">
+        <div class="bt-feature__icon">🦷</div>
+        <p class="bt-feature__title">360° Clean in Seconds</p>
+        <p class="bt-feature__desc">U-shape wraps every tooth — front, back, and sides at once.</p>
+      </div>
+      <div class="bt-feature">
+        <div class="bt-feature__icon">👨‍⚕️</div>
+        <p class="bt-feature__title">Dentist Approved</p>
+        <p class="bt-feature__desc">Medical-grade silicone. BPA-free. Pediatric-dentist recommended.</p>
+      </div>
+      <div class="bt-feature">
+        <div class="bt-feature__icon">⚡</div>
+        <p class="bt-feature__title">Kids Actually Love It</p>
+        <p class="bt-feature__desc">Cute animal design + gentle vibrations = a brush they beg to use.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Strip -->
+  <div class="bt-products">
+    <h2 class="bt-products__title">Choose What's Right for Your Child</h2>
+    <p class="bt-products__sub">Available for ages 2–6 and 6–12. Multiple fun colors!</p>
+
+    <div class="bt-products__grid">
+
+      <!-- Product 1 -->
+      <div class="bt-card">
+        {% if section.settings.product_image_1 != blank %}
+          {{ section.settings.product_image_1 | image_url: width: 600 | image_tag:
+            class: 'bt-card__img',
+            alt: section.settings.product_name_1 }}
+        {% else %}
+          <div class="bt-card__placeholder">🪥</div>
+        {% endif %}
+        <div class="bt-card__body">
+          <p class="bt-card__name">{{ section.settings.product_name_1 }}</p>
+          <p class="bt-card__price">{{ section.settings.product_price_1 }}</p>
+          <a href="{{ section.settings.product_link_1 }}" class="bt-card__btn">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="bt-card">
+        {% if section.settings.product_image_2 != blank %}
+          {{ section.settings.product_image_2 | image_url: width: 600 | image_tag:
+            class: 'bt-card__img',
+            alt: section.settings.product_name_2 }}
+        {% else %}
+          <div class="bt-card__placeholder">🔄</div>
+        {% endif %}
+        <div class="bt-card__body">
+          <p class="bt-card__name">{{ section.settings.product_name_2 }}</p>
+          <p class="bt-card__price">{{ section.settings.product_price_2 }}</p>
+          <a href="{{ section.settings.product_link_2 }}" class="bt-card__btn">Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom CTA Strip -->
+  <div class="bt-cta-strip">
+    <p class="bt-cta-strip__eyebrow">Join 5,000+ Happy Families</p>
+    <h2 class="bt-cta-strip__title">Tonight Could Be the Last Night<br>You Fight Over Brushing</h2>
+    <p class="bt-cta-strip__body">5,000+ moms already made the switch. Their kids are brushing happily. Their evenings are peaceful. You deserve that too.</p>
+    <a href="{{ section.settings.button_link }}" class="bt-cta-strip__btn">{{ section.settings.button_label }}</a>
+    <p class="bt-cta-strip__fine">Free Shipping &middot; 30-Day Guarantee &middot; Your Sanity is Worth It</p>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "BT Hero Landing",
+  "tag": "section",
+  "class": "bt-hero-landing",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "🚚 FREE Shipping Today + 30-Day Money-Back Guarantee"
+    },
+    {
+      "type": "header",
+      "content": "Hero Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Headline",
+      "default": "\"Mommy, I Want to Brush My Teeth!\""
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Imagine your child running to the bathroom, excited to brush. No more tears. No more chasing. No more guilt. Baby Tooth makes it happen in 60 seconds flat."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Primary Button Label",
+      "default": "Yes, I Need This!"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary Button Label",
+      "default": "See How It Works"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Product 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_1",
+      "label": "Product 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "product_name_1",
+      "label": "Product 1 Name",
+      "default": "Kids Electric Toothbrush"
+    },
+    {
+      "type": "text",
+      "id": "product_price_1",
+      "label": "Product 1 Price",
+      "default": "EUR 24.99"
+    },
+    {
+      "type": "url",
+      "id": "product_link_1",
+      "label": "Product 1 Link"
+    },
+    {
+      "type": "header",
+      "content": "Product 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_2",
+      "label": "Product 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "product_name_2",
+      "label": "Product 2 Name",
+      "default": "Replacement Toothbrush Heads"
+    },
+    {
+      "type": "text",
+      "id": "product_price_2",
+      "label": "Product 2 Price",
+      "default": "EUR 9.70"
+    },
+    {
+      "type": "url",
+      "id": "product_link_2",
+      "label": "Product 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BT Hero Landing"
+    }
+  ]
+}
+{% endschema %}
